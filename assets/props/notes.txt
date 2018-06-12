@@ -1,0 +1,18 @@
+===Export FBX Procedure===
+
+Blender:
+- Select asset
+- Transform->Rotation->X = -90
+- Object->Apply->Rotation
+- Go to Export->FBX
+- Check 'Selected Objects'
+- Scale: 0.01
+
+*Assuming Properties->Scene->Unit Scale is 1.0 Metric
+
+===Importing FBX Procedure===
+
+Unity:
+- Drag and drop FBX asset
+- Go Inspector->Model
+- Uncheck 'Use File Scale' and Apply
