@@ -54,7 +54,6 @@ public class PlayerControllers : MonoBehaviour
     {
       if (Vector3.Distance(_endPosition, transform.position) < _repositionTolerance)
       {
-        _rb.useGravity = false;
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
 
@@ -74,8 +73,8 @@ public class PlayerControllers : MonoBehaviour
     _ray = Camera.main.ScreenPointToRay(pos);
     if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, _layerMask))
     {
+      _rb.useGravity = false;
       _endPosition = _hit.point;
-      _rb.useGravity = true;
       isValid = true;
     }
 
