@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TitleCore : MonoBehaviour {
+public class TitleCore : MonoBehaviour
+{
+  public void StartGame(int sceneIndex)
+  {
+    CreateGameMaster();
+    SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+  }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+  private void CreateGameMaster()
+  {
+    Debug.Log("create master");
+  }
 }
