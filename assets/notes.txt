@@ -1,0 +1,72 @@
+Que dia es?
+
+Touch exploring puzzle game
+
+Jugador empieza en su cuarto y termina en el sotano, con una fiesta sorpresa de la familia.
+Feliz cumpleanios!
+
+Paty, Ivonne, Bere, Fer, Papá, Mamá
+
+Carta Ivonne
+Ubicacion->Tu Cuarto
+
+
+Potion (x3)
+Ubicacion->Refrigerador (Cocina)
+Ubicacion->Escritorio (Tu Cuarto)
+Ubicacion->Mesita (Estancia)
+
+
+Burocito
+Ubicacion->Sala
+
+
+Escaleras Atico
+Ubicacion->Pasillo 2F
+Requisitos->Burocito
+
+
+Puerta Atico
+Requisitos->Chapa de Puerta
+
+
+Llave de Lades
+Ubicacion->Sala->Guia de FFXIV
+
+
+Armadura de Lades
+Ubicacion->Cuarto Ivonne->Armario
+Requisitos->Llave de Lades
+
+
+Garage
+Requisitos->Burocito (Quitar Pasador)
+
+
+Martillo
+Ubicacion->Garage->Caja de herramientas
+
+
+Espada de la Familia
+Ubicacion->Cuarto Papas->Vitrina
+Requisitos->Martillo
+
+
+Gran Llave del Sotano
+Ubicacion->Garage->Baul de los Recuerdos
+Requisitos->Espada de la Familia
+
+
+Sotano
+Ubicacion->-1F
+Requisitos->Gran Llave del Sotano
+
+
+Chapa de Puerta
+Ubicacion->Puerta Sotano (drop)
+
+
+Lecturas:
+Leyenda de los Recuerdos Familiares (hint)
+Como hacer sopa de brocoli
+El terrible guardian de las profundidades
