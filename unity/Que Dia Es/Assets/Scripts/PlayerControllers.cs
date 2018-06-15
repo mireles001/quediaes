@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerControllers : MonoBehaviour
 {
@@ -13,7 +11,6 @@ public class PlayerControllers : MonoBehaviour
   private float _speedRotation = 5f;
   [SerializeField]
   private float _repositionTolerance = 0.1f;
-
   private Vector3 _endPosition;
   private Quaternion _targetRotation;
   private bool _translateActive = false;
@@ -21,16 +18,16 @@ public class PlayerControllers : MonoBehaviour
   private RaycastHit _hit;
   private int _layerMask;
   private Rigidbody _rb;
+  private GameObject _mainObj;
 
-  // Use this for initialization
-  void Start()
+  void Awake()
   {
+    _mainObj = GameObject.FindWithTag("LocationMaster");
     _layerMask = 1 << LayerMask.NameToLayer("Ground");
     _rb = GetComponent<Rigidbody>();
   }
 
-  // Update is called once per frame
-  void LateUpdate()
+  void Update()
   {
     if (!_inputLocked)
     {
@@ -56,7 +53,6 @@ public class PlayerControllers : MonoBehaviour
       {
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
-
         _translateActive = false;
       }
       else
@@ -94,6 +90,22 @@ public class PlayerControllers : MonoBehaviour
     if (collision.gameObject.layer != 9)
     {
       _translateActive = false;
+    }
+  }
+
+  private void OnTriggerEnter(Collider trigger)
+  {
+    switch (trigger.gameObject.tag)
+    {
+      case "CamTrigger":
+        _mainObj.SendMessage("CamTriggerEnter",
+          trigger.gameObject.transform.parent.gameObject.name,
+          SendMessageOptions.DontRequireReceiver
+        );
+        break;
+      default:
+        Debug.Log("Trigger detected: " + trigger.gameObject.tag);
+        break;
     }
   }
 }

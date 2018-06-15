@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleCore : MonoBehaviour
 {
-  public void StartGame(int sceneIndex)
-  {
-    CreateGameMaster();
-    SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
-  }
+  [SerializeField]
+  private Button _btn;
 
-  private void CreateGameMaster()
+  private void Start()
   {
-    Debug.Log("create master");
+    _btn.onClick.AddListener(StartGame);
+  }
+  private void StartGame()
+  {
+    Destroy(_btn);
+    GameMaster.GetInstance().GoToScene(1);
   }
 }

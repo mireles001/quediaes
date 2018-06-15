@@ -5,16 +5,49 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/title.unity
     guid: 08c6c138c0fc97249bd7aa578f87a50b
   - enabled: 1
-    path: Assets/Scenes/intro.unity
-    guid: 35f46369262882e469c49fa3aafba0d9
+    path: Assets/Scenes/location_paty.unity
+    guid: 5dc54c254f9288f4f9fce729724d47cb
   - enabled: 1
-    path: Assets/Scenes/room_paty.unity
-    guid: 0450f654b0f3aec44ab876f9b3844fd6
+    path: Assets/Scenes/location_main.unity
+    guid: 8fd1081c9f5758b4cb0d5b71a704c1f2
+  - enabled: 1
+    path: Assets/Scenes/location_ivonne.unity
+    guid: 45827d20ef151f84dbfadb1043f2c935
+  - enabled: 1
+    path: Assets/Scenes/location_bathroom_upstairs.unity
+    guid: 4b2c8eb28f25bdc4693875940ec9dee0
+  - enabled: 1
+    path: Assets/Scenes/location_parents.unity
+    guid: c4952ef6ee087a74993ba4e2b81699f1
+  - enabled: 1
+    path: Assets/Scenes/location_parents_bathroom.unity
+    guid: bafaee6b624bd1f47b93659ae9d7dd82
+  - enabled: 1
+    path: Assets/Scenes/location_bathroom_downstairs.unity
+    guid: 7d31b1a03a653204787cd5437b9a9061
+  - enabled: 1
+    path: Assets/Scenes/location_tvroom.unity
+    guid: 4673f149aea35914f91f82fc03b66cec
+  - enabled: 1
+    path: Assets/Scenes/location_kitchen.unity
+    guid: f9abb318f4f717949a17401d459b9ce3
+  - enabled: 1
+    path: Assets/Scenes/location_garage.unity
+    guid: b4ec91d95817bc0448aad3d42f0ef075
+  - enabled: 1
+    path: Assets/Scenes/location_attic.unity
+    guid: ca4f0d8a801fe2b49b23e7d4f2c58b87
+  - enabled: 1
+    path: Assets/Scenes/location_basement_start.unity
+    guid: 52cf3bddd96a7c04ba0549e54d941c00
+  - enabled: 1
+    path: Assets/Scenes/location_basement_end.unity
+    guid: c0094a5eb605beb46b5ff0083ec703ce
+  - enabled: 1
+    path: Assets/Scenes/ending.unity
+    guid: 77e652248b502c346a6a5a3204c18add
   m_configObjects: {}
