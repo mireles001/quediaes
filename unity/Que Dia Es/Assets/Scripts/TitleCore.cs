@@ -8,6 +8,7 @@ public class TitleCore : MonoBehaviour
 
   private void Start()
   {
+    Destroy(GameObject.FindWithTag("GameMaster"));
     _btn.onClick.AddListener(StartGame);
   }
   private void StartGame()

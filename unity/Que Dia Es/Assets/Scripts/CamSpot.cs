@@ -294,17 +294,3 @@ public class CamSpot : MonoBehaviour
     }
   }
 }
-
-public enum CameraTypes
-{
-  Fixed,
-  Free,
-  Rail
-}
-
-public enum LookAtTypes
-{
-  Nothing,
-  Player,
-  Pivot
-}

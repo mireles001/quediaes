@@ -7,6 +7,8 @@ TagManager:
   - CamspotsHolder
   - CamTrigger
   - LocationMaster
+  - GameMaster
+  - Interactive
   layers:
   - Default
   - TransparentFX

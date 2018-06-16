@@ -18,11 +18,9 @@ public class PlayerControllers : MonoBehaviour
   private RaycastHit _hit;
   private int _layerMask;
   private Rigidbody _rb;
-  private GameObject _mainObj;
 
   void Awake()
   {
-    _mainObj = GameObject.FindWithTag("LocationMaster");
     _layerMask = 1 << LayerMask.NameToLayer("Ground");
     _rb = GetComponent<Rigidbody>();
   }
@@ -63,6 +61,11 @@ public class PlayerControllers : MonoBehaviour
     }
   }
 
+  public Transform GetAvatar()
+  {
+    return _playerAvatar;
+  }
+
   private bool CheckPosition(Vector2 pos)
   {
     bool isValid = false;
@@ -85,27 +88,21 @@ public class PlayerControllers : MonoBehaviour
     _playerAvatar.rotation = Quaternion.Lerp(_playerAvatar.rotation, _targetRotation, Time.deltaTime * _speedRotation);
   }
 
+  public void LockInput()
+  {
+    _inputLocked = true;
+  }
+
+  public void UnlockInput()
+  {
+    _inputLocked = false;
+  }
+
   private void OnCollisionEnter(Collision collision)
   {
     if (collision.gameObject.layer != 9)
     {
       _translateActive = false;
-    }
-  }
-
-  private void OnTriggerEnter(Collider trigger)
-  {
-    switch (trigger.gameObject.tag)
-    {
-      case "CamTrigger":
-        _mainObj.SendMessage("CamTriggerEnter",
-          trigger.gameObject.transform.parent.gameObject.name,
-          SendMessageOptions.DontRequireReceiver
-        );
-        break;
-      default:
-        Debug.Log("Trigger detected: " + trigger.gameObject.tag);
-        break;
     }
   }
 }

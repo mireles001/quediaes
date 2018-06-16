@@ -7,6 +7,7 @@ public static class Helpers
     GameObject master = new GameObject();
     master.AddComponent<SceneLoader>();
     master.name = "GameMaster";
+    master.tag = "GameMaster";
 
     return master.AddComponent<GameMaster>();
   }
@@ -30,4 +31,19 @@ public static class Helpers
     }
     return path;
   }
+}
+
+// Camspot variables
+public enum CameraTypes
+{
+  Fixed,
+  Free,
+  Rail
+}
+
+public enum LookAtTypes
+{
+  Nothing,
+  Player,
+  Pivot
 }

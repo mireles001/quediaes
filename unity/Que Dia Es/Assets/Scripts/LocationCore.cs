@@ -14,6 +14,19 @@ public class LocationCore : MonoBehaviour
   void Start()
   {
     _master = GameMaster.GetInstance();
+
+    if (_master.GetPhase() != 0 && _master.GetSpawnPoint() != "")
+    {
+      GameObject spawnGo = GameObject.Find(_master.GetSpawnPoint());
+
+      if (spawnGo)
+      {
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = spawnGo.transform.position;
+
+        player.GetComponent<PlayerControllers>().GetAvatar().rotation = spawnGo.transform.rotation;
+      }
+    }
   }
 
   public void SwapCamera(string cameraName)
