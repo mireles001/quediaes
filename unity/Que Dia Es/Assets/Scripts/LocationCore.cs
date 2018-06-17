@@ -2,43 +2,18 @@
 
 public class LocationCore : MonoBehaviour
 {
-  private GameObject _camSpotsHolder;
-  private GameObject _currentCameraHolder;
-  private GameMaster _master;
-
-  void Awake()
+  private void Awake()
   {
-    _camSpotsHolder = GameObject.FindWithTag("CamspotsHolder");
+    GameMaster.GetInstance().ActivatePlayerAndUI();
   }
 
-  void Start()
+  private void Start()
   {
-    _master = GameMaster.GetInstance();
-  }
+    GameObject player = GameObject.FindWithTag("Player");
 
-  public void SwapCamera(string cameraName)
-  {
-    if (_camSpotsHolder)
+    if (player)
     {
-      if (_currentCameraHolder)
-      {
-        _currentCameraHolder.SendMessage("CameraOff");
-      }
-
-      _currentCameraHolder = GameObject.Find(_camSpotsHolder.name + "/" + cameraName) as GameObject;
-      _currentCameraHolder.SendMessage("CameraOn");
-    }
-  }
-
-  public void CamTriggerEnter(string cameraName)
-  {
-    if (_currentCameraHolder && _currentCameraHolder.name != cameraName)
-    {
-      SwapCamera(cameraName);
-    }
-    else if (!_currentCameraHolder)
-    {
-      SwapCamera(cameraName);
+      player.GetComponent<PlayerCore>().LocationLoaded();
     }
   }
 }

@@ -42,7 +42,7 @@ public class CamSpot : MonoBehaviour
   private Transform _cam;
 
   // Use this for initialization
-  void Awake()
+  private void Start()
   {
     GameObject playerObj = GameObject.FindWithTag("Player");
     _mainCamera = Camera.main;
@@ -50,12 +50,11 @@ public class CamSpot : MonoBehaviour
     if (playerObj)
     {
       _player = playerObj.transform;
-
-      GameObject goPlayerCamTarget = GameObject.Find(playerObj.name + "/CameraTarget");
+      Transform goPlayerCamTarget = playerObj.GetComponent<PlayerCore>().GetCameraTarget();
 
       if (goPlayerCamTarget)
       {
-        _playerCamTarget = goPlayerCamTarget.transform;
+        _playerCamTarget = goPlayerCamTarget;
       }
       else
       {
@@ -92,10 +91,7 @@ public class CamSpot : MonoBehaviour
       _lookToPlayer = false;
       Debug.Log("Cannot have Free Camera & Look to Player at Camspot: " + gameObject.name);
     }
-  }
 
-  void Start()
-  {
     string camHolder = Helpers.GetGameObjectPath(transform) + "/cam_holder";
     GameObject cameraHolder = GameObject.Find(camHolder);
     _cam = cameraHolder.transform;
@@ -293,18 +289,4 @@ public class CamSpot : MonoBehaviour
       }
     }
   }
-}
-
-public enum CameraTypes
-{
-  Fixed,
-  Free,
-  Rail
-}
-
-public enum LookAtTypes
-{
-  Nothing,
-  Player,
-  Pivot
 }

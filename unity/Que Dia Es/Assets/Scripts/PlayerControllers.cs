@@ -2,28 +2,28 @@
 
 public class PlayerControllers : MonoBehaviour
 {
-  public Transform _playerAvatar;
-  [SerializeField]
-  private bool _inputLocked = false;
   [SerializeField]
   private float _speedMove = 5f;
   [SerializeField]
-  private float _speedRotation = 5f;
+  private float _speedRotation = 10f;
   [SerializeField]
   private float _repositionTolerance = 0.1f;
+
+  private bool _inputLocked = false;
+  private bool _translateActive = false;
+  private bool _validInput = true;
+  private int _layerMask;
   private Vector3 _endPosition;
   private Quaternion _targetRotation;
-  private bool _translateActive = false;
   private Ray _ray;
   private RaycastHit _hit;
-  private int _layerMask;
+  private Transform _avatarHolder;
   private Rigidbody _rb;
-  private GameObject _mainObj;
 
   void Awake()
   {
-    _mainObj = GameObject.FindWithTag("LocationMaster");
     _layerMask = 1 << LayerMask.NameToLayer("Ground");
+    _avatarHolder = GetComponent<PlayerCore>().GetAvatarHolder();
     _rb = GetComponent<Rigidbody>();
   }
 
@@ -41,9 +41,18 @@ public class PlayerControllers : MonoBehaviour
         validPosition = CheckPosition(Input.GetTouch(0).position);
       }
 
-      if (validPosition)
+      if (validPosition && _validInput)
       {
         _translateActive = true;
+      }
+
+      _validInput = true;
+    }
+    else
+    {
+      if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+      {
+        _validInput = false;
       }
     }
 
@@ -77,12 +86,22 @@ public class PlayerControllers : MonoBehaviour
     return isValid;
   }
 
+  public void LockPlayer()
+  {
+    _inputLocked = true;
+  }
+
+  public void UnlockPlayer()
+  {
+    _inputLocked = false;
+  }
+
   public void LookTowards(Vector3 looAt)
   {
-    _targetRotation = Quaternion.LookRotation((looAt - _playerAvatar.position).normalized);
+    _targetRotation = Quaternion.LookRotation((looAt - _avatarHolder.position).normalized);
     _targetRotation.x = 0f;
     _targetRotation.z = 0f;
-    _playerAvatar.rotation = Quaternion.Lerp(_playerAvatar.rotation, _targetRotation, Time.deltaTime * _speedRotation);
+    _avatarHolder.rotation = Quaternion.Lerp(_avatarHolder.rotation, _targetRotation, Time.deltaTime * _speedRotation);
   }
 
   private void OnCollisionEnter(Collision collision)
@@ -90,22 +109,6 @@ public class PlayerControllers : MonoBehaviour
     if (collision.gameObject.layer != 9)
     {
       _translateActive = false;
-    }
-  }
-
-  private void OnTriggerEnter(Collider trigger)
-  {
-    switch (trigger.gameObject.tag)
-    {
-      case "CamTrigger":
-        _mainObj.SendMessage("CamTriggerEnter",
-          trigger.gameObject.transform.parent.gameObject.name,
-          SendMessageOptions.DontRequireReceiver
-        );
-        break;
-      default:
-        Debug.Log("Trigger detected: " + trigger.gameObject.tag);
-        break;
     }
   }
 }

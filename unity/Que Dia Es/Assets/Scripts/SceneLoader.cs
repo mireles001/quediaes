@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
   {
     if (_fadeInFadeOut == null)
     {
-      _fadeInFadeOut = Helpers.CreateFadeInFadeOut();
+      _fadeInFadeOut = ObjectFactory.CreateFadeInFadeOut();
       _fadeInFadeOut.GetComponent<FadeInFadeOut>().FadeIn(sceneIndex);
     }
   }
