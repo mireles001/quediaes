@@ -111,6 +111,17 @@ public class PlayerCore : MonoBehaviour
     }
   }
 
+  public void PlayAnimation(string animationName)
+  {
+    Debug.Log("Play: " + animationName + " animation");
+    Invoke("EndAnimation", 1);
+  }
+
+  public void EndAnimation()
+  {
+    _currentInteractive.SendMessage("EndAnimation", null, SendMessageOptions.DontRequireReceiver);
+  }
+
   private void OnTriggerEnter(Collider trigger)
   {
     if ("Interactive" == trigger.gameObject.tag)

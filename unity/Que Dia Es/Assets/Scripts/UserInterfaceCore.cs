@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UserInterfaceCore : MonoBehaviour
@@ -64,6 +65,28 @@ public class UserInterfaceCore : MonoBehaviour
   private float _interactButtonDistance = 1.9f;
   private RectTransform _btnInteractTransform;
 
+  [SerializeField]
+  private GameObject _announcement;
+  [SerializeField]
+  private Text _announcementText;
+  [SerializeField]
+  private float _waitTime;
+  private float _currentTimer;
+  private bool _showAnnouncement = false;
+
+  [SerializeField]
+  private GameObject _popup;
+  [SerializeField]
+  private Text _popupText;
+  [SerializeField]
+  private Button _btnPopupAccept;
+  [SerializeField]
+  private Button _btnPopupCancel;
+  [SerializeField]
+  private Button _btnPopupOk;
+  private List<string> _textList;
+  private int _textProgress = 0;
+
   private Vector3 _potionPos;
   private Vector3 _armorPos;
 
@@ -126,6 +149,13 @@ public class UserInterfaceCore : MonoBehaviour
     _btnInteract.onClick.AddListener(Interact);
     _btnInteract.onClick.AddListener(CheckPlayerLock);
     _btnInteract.gameObject.SetActive(false);
+
+    _btnPopupAccept.onClick.AddListener(PopupAccept);
+    _btnPopupCancel.onClick.AddListener(PopupCancel);
+    _btnPopupOk.onClick.AddListener(PopupOk);
+    _popup.SetActive(false);
+
+    _announcement.SetActive(false);
   }
 
   private void LateUpdate()
@@ -142,11 +172,18 @@ public class UserInterfaceCore : MonoBehaviour
 
       _btnInteractTransform.localPosition = _interactPosition;
     }
+
+    if (_showAnnouncement)
+    {
+      _currentTimer += Time.deltaTime;
+      if (_currentTimer >= _waitTime)
+        HideAnnouncement();
+    }
   }
 
   private void Interact()
   {
-    _interactOpened = true;
+    SetInteractOpened(true);
     _playerCore.GetInteractive().SendMessage("Interact", null, SendMessageOptions.DontRequireReceiver);
   }
 
@@ -160,6 +197,11 @@ public class UserInterfaceCore : MonoBehaviour
   {
     _interactAvailable = false;
     _btnInteract.gameObject.SetActive(false);
+  }
+
+  public void SetInteractOpened(bool value)
+  {
+    _interactOpened = value;
   }
 
   private void UsePotion()
@@ -356,5 +398,75 @@ public class UserInterfaceCore : MonoBehaviour
   private void ExitGame()
   {
     GameMaster.GetInstance().GoToScene(0);
+  }
+
+  public void ShowPopup(string type, List<string> text)
+  {
+    _btnPopupAccept.gameObject.SetActive(false);
+    _btnPopupCancel.gameObject.SetActive(false);
+    _btnPopupOk.gameObject.SetActive(false);
+    _textList = text;
+    _textProgress = 0;
+
+    // text || option
+    if (type == "text")
+    {
+      _btnPopupOk.gameObject.SetActive(true);
+    }
+    else
+    {
+      _btnPopupAccept.gameObject.SetActive(true);
+      _btnPopupCancel.gameObject.SetActive(true);
+    }
+
+    _popupText.text = _textList[_textProgress];
+    _popup.SetActive(true);
+  }
+
+  private void ClosePopup(bool result = true)
+  {
+    _popup.SetActive(false);
+
+    if (_playerCore.GetInteractive() != null)
+    {
+      _playerCore.GetInteractive().SendMessage("ClosePopup", result, SendMessageOptions.DontRequireReceiver);
+    }
+  }
+
+  private void PopupAccept()
+  {
+    ClosePopup();
+  }
+
+  private void PopupCancel()
+  {
+    ClosePopup(false);
+  }
+
+  private void PopupOk()
+  {
+    int textLenght = _textList.Count;
+    _textProgress++;
+    if (_textProgress < textLenght)
+    {
+      _popupText.text = _textList[_textProgress];
+    }
+    else
+    {
+      ClosePopup();
+    }
+  }
+
+  public void ShowAnnouncement(string textContent)
+  {
+    _currentTimer = 0;
+    _announcement.SetActive(true);
+    _announcementText.text = textContent;
+    _showAnnouncement = true;
+  }
+  private void HideAnnouncement()
+  {
+    _showAnnouncement = false;
+    _announcement.SetActive(false);
   }
 }

@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/Scenes/location_attic.unity
     guid: ca4f0d8a801fe2b49b23e7d4f2c58b87
   - enabled: 1
+    path: Assets/Scenes/location_attic_inner.unity
+    guid: 16af68230c981c04cb20a003dd115357
+  - enabled: 1
     path: Assets/Scenes/location_basement_start.unity
     guid: 52cf3bddd96a7c04ba0549e54d941c00
   - enabled: 1

@@ -2,15 +2,27 @@
 
 public class GameProgress : MonoBehaviour
 {
-  public bool _hasTegami = true;
-  public bool _hasSmallKey = true;
-  public bool _hasHammer = true;
-  public bool _hasSword = true;
-  public bool _hasBigKey = true;
-  public bool _hasKnob = true;
-  public bool _hasArmor = true;
+  public bool _hasTegami = false;
+  public bool _hasSmallKey = false;
+  public bool _hasHammer = false;
+  public bool _hasSword = false;
+  public bool _hasBigKey = false;
+  public bool _hasKnob = false;
+  public bool _hasArmor = false;
   public int _potions = 0;
   public bool _armorEquipped = false;
+
+  public bool _kitchenLock = true;
+  public bool _atticLock = true;
+  public bool _stairsDown = false;
+  public bool _basementLock = true;
+
+  public bool _hasPotionPaty = false;
+  public bool _hasPotionFridge = false;
+  public bool _hasPotionAttic = false;
+
+  public string _usedDoorName = "";
+
   private PlayerCore playerCore;
 
   public GameObject GetCurrentSkin()

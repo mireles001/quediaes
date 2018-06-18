@@ -5,7 +5,7 @@ public class GameMaster : MonoBehaviour
   protected static GameMaster _instance;
   private SceneLoader _sceneLoader;
   private GameObject _player;
-  private GameObject _UI;
+  private GameObject _ui;
 
   void Awake()
   {
@@ -30,18 +30,18 @@ public class GameMaster : MonoBehaviour
     _player = Instantiate(go);
     _player.transform.parent = gameObject.transform;
 
-    _UI = Instantiate(ui);
-    _UI.transform.parent = gameObject.transform;
+    _ui = Instantiate(ui);
+    _ui.transform.parent = gameObject.transform;
 
     _player.GetComponent<PlayerCore>().StartUp();
     _player.SetActive(false);
-    _UI.SetActive(false);
+    _ui.SetActive(false);
   }
 
   public void ActivatePlayerAndUI()
   {
     _player.SetActive(true);
-    _UI.SetActive(true);
+    _ui.SetActive(true);
   }
 
   public GameObject GetPlayer()
@@ -51,7 +51,7 @@ public class GameMaster : MonoBehaviour
 
   public GameObject GetUI()
   {
-    return _UI;
+    return _ui;
   }
 
   public SceneLoader GetSceneLoader()
