@@ -6,6 +6,7 @@ public class GameMaster : MonoBehaviour
   private SceneLoader _sceneLoader;
   private GameObject _player;
   private GameObject _ui;
+  private GameProgress _progress;
 
   void Awake()
   {
@@ -17,11 +18,15 @@ public class GameMaster : MonoBehaviour
     else if (_instance != this)
       Destroy(gameObject);
 
+    _progress = transform.GetComponent<GameProgress>();
     _sceneLoader = transform.GetComponent<SceneLoader>();
   }
 
   public void GoToScene(int sceneIndex)
   {
+    if (sceneIndex == 13 && _progress._basementPhase)
+      sceneIndex = 14;
+
     _sceneLoader.GoToScene(sceneIndex);
   }
 

@@ -12,10 +12,10 @@ public class GameProgress : MonoBehaviour
   public int _potions = 0;
   public bool _armorEquipped = false;
 
-  public bool _kitchenLock = true;
   public bool _atticLock = true;
   public bool _stairsDown = false;
   public bool _basementLock = true;
+  public bool _basementPhase = false;
 
   public bool _hasPotionPaty = false;
   public bool _hasPotionFridge = false;

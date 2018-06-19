@@ -14,7 +14,6 @@ public class PlayerCore : MonoBehaviour
   private GameObject _mainObj;
   private GameObject _currentInteractive;
   private PlayerControllers _controller;
-  private GameProgress _core;
   private UserInterfaceCore _UI;
 
   void Awake()
@@ -25,7 +24,6 @@ public class PlayerCore : MonoBehaviour
   public void StartUp()
   {
     GameMaster master = GameMaster.GetInstance();
-    _core = master.gameObject.GetComponent<GameProgress>();
     EquipArmorSkin();
     _UI = master.GetUI().GetComponent<UserInterfaceCore>();
   }

@@ -81,6 +81,8 @@ public class UserInterfaceCore : MonoBehaviour
   [SerializeField]
   private Button _btnPopupAccept;
   [SerializeField]
+  private Text _btnPopupAcceptText;
+  [SerializeField]
   private Button _btnPopupCancel;
   [SerializeField]
   private Button _btnPopupOk;
@@ -400,7 +402,7 @@ public class UserInterfaceCore : MonoBehaviour
     GameMaster.GetInstance().GoToScene(0);
   }
 
-  public void ShowPopup(string type, List<string> text)
+  public void ShowPopup(string type, List<string> text, bool endGame = false)
   {
     _btnPopupAccept.gameObject.SetActive(false);
     _btnPopupCancel.gameObject.SetActive(false);
@@ -415,6 +417,11 @@ public class UserInterfaceCore : MonoBehaviour
     }
     else
     {
+      _btnPopupAcceptText.text = "Aceptar";
+      if (endGame)
+      {
+        _btnPopupAcceptText.text = "Terminar";
+      }
       _btnPopupAccept.gameObject.SetActive(true);
       _btnPopupCancel.gameObject.SetActive(true);
     }

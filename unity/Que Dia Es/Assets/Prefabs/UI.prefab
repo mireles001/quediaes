@@ -463,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1444286847681906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2553,7 @@ MonoBehaviour:
   _popup: {fileID: 1420558601210528}
   _popupText: {fileID: 114140698248101990}
   _btnPopupAccept: {fileID: 114161367499318668}
+  _btnPopupAcceptText: {fileID: 114392199343398030}
   _btnPopupCancel: {fileID: 114979626049953502}
   _btnPopupOk: {fileID: 114460037314503960}
 --- !u!114 &114493621150768746
