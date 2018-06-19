@@ -192,6 +192,14 @@ public static class TextContent
   public static List<string> BASEMENT_OPTION = new List<string> {
     "Encender lámpara?"
   };
+
+  // LADDER
+  public static List<string> LADDER_TEXT = new List<string> {
+    "Ah! Que cosa más escandaloza!\nDefinitivamente ha de estar todo sucio allá arriba... Se ve que nadie ha subido en mucho tiempo al ático.\nO si?"
+  };
+  public static List<string> LADDER_OPTION = new List<string> {
+    "La cuerdita para bajar las escaleras que dan al ático. Que onda, la jalo? (Tengo añales sin subir alla... seguro esta todo sucio)"
+  };
 }
 
 public enum CameraTypes
