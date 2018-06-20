@@ -102,12 +102,14 @@ public class UserInterfaceCore : MonoBehaviour
   private Vector2 _canvasHalfed;
   private Vector3 _interactPosition;
 
+  private GameMaster _master;
+
   void Start()
   {
-    GameMaster master = GameMaster.GetInstance();
-    _progress = master.gameObject.GetComponent<GameProgress>();
+    _master = GameMaster.GetInstance();
+    _progress = _master.gameObject.GetComponent<GameProgress>();
 
-    GameObject player = master.GetPlayer();
+    GameObject player = _master.GetPlayer();
     _playerTransform = player.transform;
     _playerCore = player.GetComponent<PlayerCore>();
 
@@ -162,7 +164,7 @@ public class UserInterfaceCore : MonoBehaviour
 
   private void LateUpdate()
   {
-    if (_playerTransform  && _interactAvailable)
+    if (_playerTransform && _interactAvailable)
     {
       _playerPosition = _playerTransform.position;
       _playerPosition.y += _interactButtonDistance;
@@ -208,12 +210,14 @@ public class UserInterfaceCore : MonoBehaviour
 
   private void UsePotion()
   {
+    _master.GetAudio().PlaySound("potion");
     _progress._potions--;
     RefreshItems();
   }
 
   private void EquipArmor()
   {
+    _master.GetAudio().PlaySound("sword");
     _progress._armorEquipped = !_progress._armorEquipped;
     ClearAvatar();
     RenderAvatar();
@@ -228,7 +232,13 @@ public class UserInterfaceCore : MonoBehaviour
     {
       _menuOpened = !_menuOpened;
       if (_menuOpened && _systemOpened)
+      {
         ToggleSystem();
+      }
+      else
+      {
+        _master.GetAudio().PlaySound();
+      }
 
       if (_menuOpened)
       {
@@ -325,6 +335,8 @@ public class UserInterfaceCore : MonoBehaviour
 
   private void InspectKeyItem(string param)
   {
+    _master.GetAudio().PlaySound();
+
     if (param != _currentInspecting)
     {
       RefreshItems();
@@ -376,7 +388,13 @@ public class UserInterfaceCore : MonoBehaviour
     {
       _systemOpened = !_systemOpened;
       if (_menuOpened && _systemOpened)
+      {
         ToggleMenu();
+      }
+      else
+      {
+        _master.GetAudio().PlaySound();
+      }
 
       _menuSystem.SetActive(_systemOpened);
     }
@@ -394,11 +412,15 @@ public class UserInterfaceCore : MonoBehaviour
   {
     _sound = !_sound;
 
-    Debug.Log("Has sound: " + _sound);
+    _master.GetAudio().GetSoundSource().mute = !_sound;
+    _master.GetAudio().GetMusicSource().mute = !_sound;
+
+    _master.GetAudio().PlaySound();
   }
 
   private void ExitGame()
   {
+    _master.GetAudio().PlaySound();
     GameMaster.GetInstance().GoToScene(0);
   }
 
@@ -442,16 +464,19 @@ public class UserInterfaceCore : MonoBehaviour
 
   private void PopupAccept()
   {
+    _master.GetAudio().PlaySound();
     ClosePopup();
   }
 
   private void PopupCancel()
   {
+    _master.GetAudio().PlaySound();
     ClosePopup(false);
   }
 
   private void PopupOk()
   {
+    _master.GetAudio().PlaySound();
     int textLenght = _textList.Count;
     _textProgress++;
     if (_textProgress < textLenght)
@@ -470,10 +495,18 @@ public class UserInterfaceCore : MonoBehaviour
     _announcement.SetActive(true);
     _announcementText.text = textContent;
     _showAnnouncement = true;
+
+    Invoke("Delayer", 0.3f);
   }
+
   private void HideAnnouncement()
   {
     _showAnnouncement = false;
     _announcement.SetActive(false);
+  }
+
+  private void Delayer()
+  {
+    _master.GetAudio().PlaySound("get");
   }
 }

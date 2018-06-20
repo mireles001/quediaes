@@ -102,11 +102,8 @@ public class PlayerCore : MonoBehaviour
 
   private void InteractiveOff(GameObject go)
   {
-    if (_currentInteractive && _currentInteractive.name == go.name)
-    {
-      _UI.HideInteract();
-      _currentInteractive = null;
-    }
+    _UI.HideInteract();
+    _currentInteractive = null;
   }
 
   public void PlayAnimation(string animationName)

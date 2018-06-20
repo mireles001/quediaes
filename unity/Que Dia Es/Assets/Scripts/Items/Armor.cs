@@ -5,6 +5,7 @@
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _checkForOption = false;
     _ui.HideInteract();
     PlayerLookToMe();
@@ -38,6 +39,7 @@
       if (_checkForOption && result)
       {
         _phase++;
+        _master.GetAudio().PlaySound("lock");
         Invoke("Delayer", 0.5f);
       }
       else

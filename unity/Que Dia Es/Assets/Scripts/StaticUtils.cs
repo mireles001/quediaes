@@ -200,6 +200,17 @@ public static class TextContent
   public static List<string> LADDER_OPTION = new List<string> {
     "La cuerdita para bajar las escaleras que dan al ático. Que onda, la jalo? (Tengo añales sin subir alla... seguro esta todo sucio)"
   };
+
+  // ATTIC DOOR
+  public static List<string> ATTICDOOR_TEXT = new List<string> {
+    "Una puerta vieja y abandonada... Es lo único que hay aquí.\nNo se mueve nadita y aparte no tiene manija, ni como hacerle... Mejor me voy, este silencio puede ser un tanto alarmante."
+  };
+  public static List<string> UNLOCKEDATTICDOOR_TEXT = new List<string> {
+    "Funcionó! El mecanismo de la puerta funciona... \nSerá buena idea ver que hay en el cuarto adyecente?\n/glup"
+  };
+  public static List<string> ATTICDOOR_OPTION = new List<string> {
+    "Que tal? La manija que obtuve de la puerta del sótano entra perfectamente aquí...\nLe instalo la manija a la puerta?"
+  };
 }
 
 public enum CameraTypes

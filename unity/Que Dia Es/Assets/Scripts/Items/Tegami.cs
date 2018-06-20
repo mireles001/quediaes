@@ -19,6 +19,7 @@ public class Tegami : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     _player.PlayAnimation("interact_low");

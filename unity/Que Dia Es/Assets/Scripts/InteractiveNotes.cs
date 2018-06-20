@@ -8,6 +8,7 @@ public class InteractiveNotes : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     if (_note == "basement_0" || _note == "basement_1" || _note == "basement_2" || _note == "basement_3" || _note == "basement_4")

@@ -144,6 +144,7 @@ MonoBehaviour:
   _btn: {fileID: 662971990}
   _player: {fileID: 1720022678895546, guid: 2ce903ec54838a84d940f0d1db681278, type: 2}
   _UI: {fileID: 1893280959628276, guid: b859bbb178264b84bac60fdb83ed88b0, type: 2}
+  _audio: {fileID: 1617489839783136, guid: eb2e80f33e7255d4d8f109e4f9b2f9ec, type: 2}
 --- !u!4 &163467785
 Transform:
   m_ObjectHideFlags: 0

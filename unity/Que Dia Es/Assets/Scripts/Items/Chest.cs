@@ -17,6 +17,7 @@ public class Chest : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     if (_progress._hasSword)
@@ -54,6 +55,7 @@ public class Chest : Interactive
       }
       else
       {
+        _master.GetAudio().PlaySound("sword");
         _player.PlayAnimation("interact_sword");
       }
     }

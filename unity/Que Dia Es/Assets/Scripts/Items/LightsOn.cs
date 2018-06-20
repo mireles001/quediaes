@@ -8,6 +8,7 @@ public class LightsOn : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _timeToDecide = false;
     _ui.HideInteract();
     PlayerLookToMe();
@@ -33,6 +34,7 @@ public class LightsOn : Interactive
     {
       if (_timeToDecide)
       {
+        _master.GetAudio().PlaySound("lock");
         _player.PlayAnimation("interact_base");
       }
       else

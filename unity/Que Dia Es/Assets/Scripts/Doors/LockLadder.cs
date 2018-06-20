@@ -26,6 +26,7 @@ public class LockLadder : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     _ui.ShowPopup("option", TextContent.LADDER_OPTION);
@@ -43,6 +44,7 @@ public class LockLadder : Interactive
     {
       if (!_progress._stairsDown)
       {
+        _master.GetAudio().PlaySound("lock");
         _player.PlayAnimation("interact_reach");
       }
       else
@@ -66,6 +68,7 @@ public class LockLadder : Interactive
       _progress._stairsDown = true;
       _ladderGo.SetActive(true);
       _ladderAnim = _ladderGo.GetComponent<Animator>();
+      _master.GetAudio().PlaySound("door");
       _ladderAnim.Play("ladder_anim");
     }
     else

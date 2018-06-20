@@ -2,6 +2,9 @@
 
 public class LocationCore : MonoBehaviour
 {
+  [SerializeField]
+  private string _musicTheme;
+
   private void Awake()
   {
     GameMaster.GetInstance().ActivatePlayerAndUI();
@@ -12,6 +15,8 @@ public class LocationCore : MonoBehaviour
     GameMaster master = GameMaster.GetInstance();
     GameObject player = master.GetPlayer();
     string usedDoor = master.gameObject.GetComponent<GameProgress>()._usedDoorName;
+
+    master.GetAudio().PlayTrack(_musicTheme);
 
     if (player)
     {

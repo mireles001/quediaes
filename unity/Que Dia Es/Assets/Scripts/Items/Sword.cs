@@ -22,6 +22,7 @@ public class Sword : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     if (_progress._hasHammer)
@@ -61,6 +62,7 @@ public class Sword : Interactive
       if (_progress._hasHammer && result)
       {
         _useHammer = true;
+        _master.GetAudio().PlaySound("hammer");
         _player.PlayAnimation("interact_hammer");
       }
       else

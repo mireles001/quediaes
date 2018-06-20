@@ -9,6 +9,8 @@ public class TitleCore : MonoBehaviour
   private GameObject _player;
   [SerializeField]
   private GameObject _UI;
+  [SerializeField]
+  private GameObject _audio;
 
   private void Start()
   {
@@ -24,7 +26,8 @@ public class TitleCore : MonoBehaviour
   {
     Destroy(_btn);
     GameMaster master = GameMaster.GetInstance();
-    master.CreatePlayerAndUI(_player, _UI);
+    master.CreatePlayerAndUI(_player, _UI, _audio);
+    master.GetAudio().PlaySound();
     master.GoToScene(1);
   }
 }

@@ -22,7 +22,7 @@ public class EndGame : MonoBehaviour
 
   private void TerminateGame()
   {
-    Debug.Log("click");
+    _master.GetAudio().PlaySound("potion");
     _master.GoToScene(0);
   }
 }

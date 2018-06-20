@@ -5,17 +5,19 @@ public class Interactive : MonoBehaviour
   protected PlayerCore _player;
   protected GameProgress _progress;
   protected UserInterfaceCore _ui;
+  protected GameMaster _master;
 
   void Awake()
   {
-    GameMaster master = GameMaster.GetInstance();
-    _player = master.GetPlayer().GetComponent<PlayerCore>();
-    _progress = master.gameObject.GetComponent<GameProgress>();
-    _ui = master.GetUI().GetComponent<UserInterfaceCore>();
+    _master = GameMaster.GetInstance();
+    _player = _master.GetPlayer().GetComponent<PlayerCore>();
+    _progress = _master.gameObject.GetComponent<GameProgress>();
+    _ui = _master.GetUI().GetComponent<UserInterfaceCore>();
   }
 
   public virtual void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     _player.PlayAnimation("interact_base");

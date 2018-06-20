@@ -21,7 +21,14 @@ public class Door : Interactive
     _player.PlayAnimation("interact_base");
 
     if (_animatedGameObject)
+    {
       _anim.SetBool("open", true);
+      _master.GetAudio().PlaySound("door");
+    }
+    else
+    {
+      _master.GetAudio().PlaySound();
+    }
   }
 
   public override void EndAnimation()

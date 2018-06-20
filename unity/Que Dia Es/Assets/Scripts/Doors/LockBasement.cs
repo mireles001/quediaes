@@ -22,6 +22,7 @@ public class LockBasement : Interactive
 
   public override void Interact()
   {
+    _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
     if (_progress._hasBigKey)
@@ -58,6 +59,7 @@ public class LockBasement : Interactive
       else
       {
         _anim = _knob.GetComponent<Animator>();
+        _master.GetAudio().PlaySound("lock");
         _anim.SetBool("knob_drop", true);
       }
     }
