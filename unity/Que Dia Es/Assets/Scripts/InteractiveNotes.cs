@@ -6,13 +6,19 @@ public class InteractiveNotes : Interactive
   [SerializeField]
   private string _note;
 
+  [SerializeField]
+  private GameObject _character;
+  private Animator _anim;
+
   public override void Interact()
   {
     _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();
-    if (_note == "basement_0" || _note == "basement_1" || _note == "basement_2" || _note == "basement_3" || _note == "basement_4")
+    if (IsCharacter())
     {
+      _anim = _character.GetComponent<Animator>();
+      _anim.SetBool("isCheering", true);
       EndAnimation();
     }
     else
@@ -73,14 +79,31 @@ public class InteractiveNotes : Interactive
 
   public override void ClosePopup(bool result)
   {
-    if (_note != "basement_2")
+    if (IsCharacter())
     {
-      EndInteract();
+      _anim.SetBool("isCheering", false);
     }
-    else
+
+    if (_note == "basement_2" && result)
     {
       Invoke("Delayer", 2f);
     }
+    else
+    {
+      EndInteract();
+    }
+  }
+
+  private bool IsCharacter()
+  {
+    bool value = false;
+
+    if ((_note == "basement_0" || _note == "basement_1" || _note == "basement_2" || _note == "basement_3" || _note == "basement_4") && _character != null)
+    {
+      value = true;
+    }
+
+    return value;
   }
 
   private void Delayer()

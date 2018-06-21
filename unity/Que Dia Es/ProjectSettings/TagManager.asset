@@ -10,6 +10,7 @@ TagManager:
   - GameMaster
   - Interactive
   - UI
+  - AvatarSkin
   layers:
   - Default
   - TransparentFX

@@ -36,8 +36,6 @@ public class UserInterfaceCore : MonoBehaviour
   [SerializeField]
   private Button _btnArmor;
   [SerializeField]
-  private Text _textArmor;
-  [SerializeField]
   private Button _btnEquip;
   [SerializeField]
   private Text _textEquip;
@@ -136,7 +134,6 @@ public class UserInterfaceCore : MonoBehaviour
     _menuMain.SetActive(_menuOpened);
     _btnPotion.onClick.AddListener(() => InspectKeyItem("potion"));
     _btnArmor.onClick.AddListener(() => InspectKeyItem("armor"));
-    _textArmor.text = TextContent.ARMOR;
     _btnTegami.onClick.AddListener(() => InspectKeyItem("tegami"));
     _btnSmallKey.onClick.AddListener(() => InspectKeyItem("smallkey"));
     _btnHammer.onClick.AddListener(() => InspectKeyItem("hammer"));
@@ -319,10 +316,16 @@ public class UserInterfaceCore : MonoBehaviour
   {
     GameObject avatar = Instantiate(_progress.GetCurrentSkin());
 
+    avatar.tag = "Untagged";
     avatar.layer = 10;
     avatar.transform.parent = _uiCharacterHolder;
     avatar.transform.localPosition = Vector3.zero;
     avatar.transform.localRotation = Quaternion.identity;
+
+    foreach (Transform child in avatar.transform)
+    {
+      child.gameObject.layer = 10;
+    }
   }
 
   private void ClearAvatar()

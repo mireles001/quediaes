@@ -20,11 +20,18 @@ public class PlayerControllers : MonoBehaviour
   private Transform _avatarHolder;
   private Rigidbody _rb;
 
+  private Animator _anim;
+
   void Awake()
   {
     _layerMask = 1 << LayerMask.NameToLayer("Ground");
     _avatarHolder = GetComponent<PlayerCore>().GetAvatarHolder();
     _rb = GetComponent<Rigidbody>();
+  }
+
+  private void Start()
+  {
+    RefreshAnimator();
   }
 
   void Update()
@@ -43,6 +50,11 @@ public class PlayerControllers : MonoBehaviour
 
       if (validPosition && _validInput)
       {
+        if (_anim == null)
+        {
+          RefreshAnimator();
+        }
+        _anim.SetBool("isWalking", true);
         _translateActive = true;
       }
 
@@ -63,12 +75,27 @@ public class PlayerControllers : MonoBehaviour
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
         _translateActive = false;
+        _anim.SetBool("isWalking", false);
       }
       else
       {
         transform.position += (_endPosition - transform.position).normalized * _speedMove * Time.deltaTime;
         LookTowards(_endPosition);
       }
+    }
+  }
+
+  public Animator GetAnimator()
+  {
+    return _anim;
+  }
+
+  public void RefreshAnimator ()
+  {
+    GameObject skin = GameObject.FindWithTag("AvatarSkin");
+    if (skin)
+    {
+      _anim = skin.GetComponent<Animator>();
     }
   }
 
@@ -108,6 +135,7 @@ public class PlayerControllers : MonoBehaviour
   {
     if (collision.gameObject.layer != 9)
     {
+      _anim.SetBool("isWalking", false);
       _translateActive = false;
     }
   }

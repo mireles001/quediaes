@@ -55,6 +55,13 @@ public class PlayerCore : MonoBehaviour
     newSkin.transform.localPosition = Vector3.zero;
     newSkin.transform.localRotation = Quaternion.identity;
     newSkin.name = "avatar";
+
+    _controller.RefreshAnimator();
+  }
+
+  public Animator GetAnimator()
+  {
+    return _controller.GetAnimator();
   }
 
   public GameObject GetSkin(string name)
@@ -108,8 +115,30 @@ public class PlayerCore : MonoBehaviour
 
   public void PlayAnimation(string animationName)
   {
-    Debug.Log("Play: " + animationName + " animation");
-    Invoke("EndAnimation", 1);
+    float t = 0f;
+
+    switch (animationName)
+    {
+      case "interact_low":
+        t = 1.5f;
+        break;
+      case "interact_sword":
+        t = 2f;
+        break;
+      case "interact_reach":
+        t = 1.7f;
+        break;
+      case "interact_hammer":
+        t = 1.5f;
+        break;
+      default:
+        t = 1f;
+        break;
+    }
+
+    GetAnimator().Play(animationName);
+
+    Invoke("EndAnimation", t);
   }
 
   public void EndAnimation()

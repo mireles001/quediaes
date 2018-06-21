@@ -143,8 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatarHolder: {fileID: 4343808927543382}
   _cameraTarget: {fileID: 4773386757419086}
-  _baseSkin: {fileID: 1945211502305022, guid: c370866598d12b74da6de8864b5373c3, type: 2}
-  _armoredSkin: {fileID: 1552464274592834, guid: 401d02b9f80e52545926a83bf2677cee,
+  _baseSkin: {fileID: 1142900363889458, guid: a59c27291b08f234783d5e0fcc279c66, type: 2}
+  _armoredSkin: {fileID: 1903514165758996, guid: 6d9617303c2a58549a9ba94793cef7f3,
     type: 2}
 --- !u!136 &136990676419393198
 CapsuleCollider:
