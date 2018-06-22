@@ -5,6 +5,7 @@
 
   public override void Interact()
   {
+    _player.StopAvatar();
     _master.GetAudio().PlaySound();
     _checkForOption = false;
     _ui.HideInteract();

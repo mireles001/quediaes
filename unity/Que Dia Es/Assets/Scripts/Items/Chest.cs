@@ -4,7 +4,7 @@ public class Chest : Interactive
 {
   [SerializeField]
   private Transform _chestTop;
-  private Vector3 _endRotation = new Vector3(50f, 0f, 0f);
+  private Vector3 _endRotation = new Vector3(-160f, 0f, 0f);
 
   void Start()
   {
@@ -17,6 +17,7 @@ public class Chest : Interactive
 
   public override void Interact()
   {
+    _player.StopAvatar();
     _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();

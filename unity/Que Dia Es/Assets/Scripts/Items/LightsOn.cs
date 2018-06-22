@@ -8,6 +8,7 @@ public class LightsOn : Interactive
 
   public override void Interact()
   {
+    _player.StopAvatar();
     _master.GetAudio().PlaySound();
     _timeToDecide = false;
     _ui.HideInteract();

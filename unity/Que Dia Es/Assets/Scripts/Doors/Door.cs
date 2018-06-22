@@ -16,6 +16,7 @@ public class Door : Interactive
 
   public override void Interact()
   {
+    _player.StopAvatar();
     _ui.HideInteract();
     PlayerLookToMe();
     _player.PlayAnimation("interact_base");

@@ -72,10 +72,7 @@ public class PlayerControllers : MonoBehaviour
     {
       if (Vector3.Distance(_endPosition, transform.position) < _repositionTolerance)
       {
-        _rb.velocity = Vector3.zero;
-        _rb.angularVelocity = Vector3.zero;
-        _translateActive = false;
-        _anim.SetBool("isWalking", false);
+        ForceStop();
       }
       else
       {
@@ -83,6 +80,14 @@ public class PlayerControllers : MonoBehaviour
         LookTowards(_endPosition);
       }
     }
+  }
+
+  public void ForceStop()
+  {
+    _rb.velocity = Vector3.zero;
+    _rb.angularVelocity = Vector3.zero;
+    _translateActive = false;
+    _anim.SetBool("isWalking", false);
   }
 
   public Animator GetAnimator()

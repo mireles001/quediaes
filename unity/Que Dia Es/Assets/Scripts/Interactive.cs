@@ -17,6 +17,7 @@ public class Interactive : MonoBehaviour
 
   public virtual void Interact()
   {
+    _player.StopAvatar();
     _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();

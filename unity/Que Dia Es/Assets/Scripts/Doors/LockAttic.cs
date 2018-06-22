@@ -23,6 +23,7 @@ public class LockAttic : Interactive
 
   public override void Interact()
   {
+    _player.StopAvatar();
     _master.GetAudio().PlaySound();
     _ui.HideInteract();
     PlayerLookToMe();

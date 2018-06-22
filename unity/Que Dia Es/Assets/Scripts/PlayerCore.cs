@@ -64,6 +64,11 @@ public class PlayerCore : MonoBehaviour
     return _controller.GetAnimator();
   }
 
+  public void StopAvatar()
+  {
+    _controller.ForceStop();
+  }
+
   public GameObject GetSkin(string name)
   {
     if (name == "base")
